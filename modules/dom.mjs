@@ -1,0 +1,44 @@
+export class HdleDOM {
+  constructor() {
+    console.log("new dom object created");
+  }
+  /**
+   *
+   * @param {object} VirtualDom -  DOM representation into an object
+   * @param {string} appendTo  - the id of the element to which we want to append our new node
+   * @returns {Node}
+   * This function creates a new HTML element
+   * with the given tag name, attributes, and children within the virtualDom passed as argument.
+   * if no node's id to append the newly created node is given, the node is attached to the body
+   */
+  newElement(virtualDom = {}, appendTo = null) {
+    const element = document.createElement(virtualDom.tag); // Create a new element using the given tag name
+
+    // Add attrs to the element
+    if (virtualDom.attrs) {
+      for (const [key, value] of Object.entries(virtualDom.attrs)) {
+        element.setAttribute(key, value);
+      }
+    }
+
+    // Add children to the element
+    if (virtualDom.children) {
+      virtualDom.children.forEach((child) => {
+        if (typeof child === "string") {
+          // If the child is a simple text, create a text node
+          element.appendChild(document.createTextNode(child));
+        } else {
+          // If the child is an object, recursively create an element
+          element.appendChild(this.newElement(child));
+        }
+      });
+    }
+
+    if (appendTo !== null) {
+      document.getElementById(appendTo).appendChild(element);
+    } else {
+      document.body.appendChild(element);
+    }
+    return element;
+  }
+}
