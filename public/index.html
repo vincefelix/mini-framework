@@ -3,11 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/color.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/event.css">
-    <script type="module" src="../app/index.js"></script>
+    <link rel="stylesheet" href="styles/color.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/event.css" />
+    <!-- <script type="module" src="../app/index.js"></script> -->
     <title>TODO APP</title>
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <h1 class="title">TODOS</h1>
+      <div class="input-zone">
+        <input id="typing-zone" />
+        <button id="validate-all"></button>
+        <button id="add-todo"></button>
+      </div>
+      <div class="middle"></div>
+      <div id="footer">
+        <p id="remaining"><span id="remaining-count">0</span>items left</p>
+        <span id="display all footer">All</span
+        ><span id="display active footer">Active</span
+        ><span id="display done footer">Done</span
+        ><span id="clear footer">Clear Done</span>
+      </div>
+      <div class="credits">
+        <ul id="credit-list">
+          <li class="instruction">Double click to edit</li>
+          <li class="author">Created by @mv</li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
