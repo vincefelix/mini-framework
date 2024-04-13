@@ -1,4 +1,6 @@
-<svg width="43" height="48" viewBox="0 0 43 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="7.30115" height="46.9541" rx="3.65058" transform="matrix(0.999391 0.0348995 0.00855318 -1.00002 17.9391 47.308)" fill="white"/>
-<rect width="8.29571" height="41.3323" rx="4.14785" transform="matrix(-0.0174524 -0.999848 -0.99996 -0.0152587 42.1935 28.8464)" fill="white"/>
+<svg width="65" height="71" viewBox="0 0 65 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.8">
+<rect width="8.16992" height="47.8936" rx="4.08496" transform="matrix(0.699103 0.728608 0.644757 -0.754306 14.0541 50.8831)" fill="#FF2929"/>
+<rect width="8.46002" height="46.2535" rx="4.23001" transform="matrix(0.660709 -0.738357 -0.68317 -0.745639 44.8205 56.3049)" fill="#FF2929"/>
+</g>
 </svg>
