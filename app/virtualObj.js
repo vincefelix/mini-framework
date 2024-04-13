@@ -36,9 +36,9 @@ export const virtualObj = {
                   attrs: {
                     src: "/public/assets/check.svg",
                     alt: "check icon",
-                    class: "icon1"
-                  }
-                }
+                    class: "icon1",
+                  },
+                },
               ],
             },
             {
@@ -48,9 +48,9 @@ export const virtualObj = {
                 {
                   tag: "img",
                   attrs: {
-                    src: "/public/assets/cross.svg",
+                    src: "/public/assets/add.svg",
                     alt: "cross icon",
-                    class: "icon2"
+                    class: "icon2",
                   },
                 },
               ],
@@ -63,7 +63,71 @@ export const virtualObj = {
     //?-------------------- end of display input zone ---------------------
     //********************************************************************/
     //?-------------------- display tasks ---------------------
-    { tag: "div", attrs: { class: "middle" } },
+    {
+      tag: "div",
+      attrs: { class: "middle" },
+      //!
+      // children: [
+      //   {
+      //     tag: "div",
+      //     attrs: {
+      //       class: "task hover-task",
+      //     },
+      //     children: [
+      //       {
+      //         tag: "label",
+      //         attrs: {
+      //           for: "task1",
+      //           contenteditable: "true",
+      //           class: "focus-label",
+      //         },
+      //         children: ["this is first task"],
+      //       },
+      //       {
+      //         tag: "div",
+      //         attrs: {
+      //           class: "buttons btn-task",
+      //         },
+      //         children: [
+      //           {
+      //             tag: "button",
+      //             attrs: {
+      //               class: "btn validate hover-btn",
+      //             },
+      //             children: [
+      //               {
+      //                 tag: "img",
+      //                 attrs: {
+      //                   class: "icon2",
+      //                   src: "/public/assets/validate.svg",
+      //                   alt: "validate icon",
+      //                 },
+      //               },
+      //             ],
+      //           },
+      //           {
+      //             tag: "button",
+      //             attrs: {
+      //               class: "btn delete hover-btn",
+      //             },
+      //             children: [
+      //               {
+      //                 tag: "img",
+      //                 attrs: {
+      //                   class: "icon1",
+      //                   src: "/public/assets/cross.svg",
+      //                   alt: "cross icon",
+      //                 },
+      //               },
+      //             ],
+      //           },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      // ],
+    },
+    //!
     //?------------------- footer side ------------------------
     {
       tag: "div",
