@@ -32,34 +32,12 @@ export const virtualObj = {
               attrs: { id: "validate-all", class: "cmd hover-btn" },
               children: [
                 {
-                  tag: "svg",
+                  tag: "img",
                   attrs: {
-                    width: "65",
-                    height: "50",
-                    viewBox: "0 0 65 50",
-                    fill: "none",
-                    xmlns: "http://www.w3.org/2000/svg",
-                  },
-                  children: [
-                    {
-                      tag: "path",
-                      attrs: {
-                        opacity: 0.8,
-                        d: "M20.7727 20.9717L35.8176 39.4032L59.7954 5.67743",
-                        stroke: "white",
-                        "stroke-width": "12",
-                      },
-                    },
-                    {
-                      tag: "path",
-                      attrs: {
-                        opacity: "0.9",
-                        d: "M5.46967 19.3265L20.5146 37.7581L44.4924 4.03226",
-                        stroke: "white",
-                        "stroke-width": "12",
-                      },
-                    },
-                  ],
+                    src: "/public/assets/check.svg",
+                    alt: "check icon",
+                    class: "icon1"
+                  }
                 }
               ],
             },
@@ -68,40 +46,12 @@ export const virtualObj = {
               attrs: { id: "add-todo", class: "cmd hover-btn" },
               children: [
                 {
-                  tag: "svg",
+                  tag: "img",
                   attrs: {
-                    width: "43",
-                    height: "35",
-                    viewBox: "0 0 43 48",
-                    fill: "none",
-                    xmlns: "http://www.w3.org/2000/svg",
+                    src: "/public/assets/cross.svg",
+                    alt: "cross icon",
+                    class: "icon2"
                   },
-                  children: [
-                    {
-                      tag: "rect",
-                      attrs: {
-                        width: "7.30115",
-                        height: "46.9541",
-                        rx: "3.65058",
-                        transform:
-                          "matrix(0.999391 0.0348995 0.00855318 -1.00002 17.9391 47.308)",
-                        fill: "white",
-                        xmlns: "http://www.w3.org/2000/svg",
-                      },
-                    },
-                    {
-                      tag: "rect",
-                      attrs: {
-                        width: "8.29571",
-                        height: "41.3323",
-                        rx: "4.14785",
-                        transform:
-                          "matrix(-0.0174524 -0.999848 -0.99996 -0.0152587 42.1935 28.8464)",
-                        fill: "white",
-                        xmlns: "http://www.w3.org/2000/svg",
-                      },
-                    },
-                  ],
                 },
               ],
             },
