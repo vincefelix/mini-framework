@@ -181,7 +181,9 @@ label {
       height: 5vh;
     }
   }
-
+label {
+  font-size: 80%;
+}
   /*---------- footer -----------*/
 
   #footer {

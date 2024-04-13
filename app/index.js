@@ -1,5 +1,5 @@
 import { HdleDOM } from "../modules/dom.mjs";
-import { virtualObj } from "../app/virtual.js";
+import { virtualObj } from "./virtualObj.js";
 
 const testing = (props) => {
   const tree = new HdleDOM();
