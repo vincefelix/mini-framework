@@ -1,5 +1,5 @@
 import { newElement } from "../../modules/dom.mjs";
-import { dataList, database } from "../database/database.mjs";
+import {database } from "../database/database.mjs";
 import { genTaskObj } from "../lib/genVirtualObj.mjs";
 
 export class Render {

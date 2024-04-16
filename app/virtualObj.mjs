@@ -67,7 +67,7 @@ export const virtualObj = {
     //?-------------------- display tasks ---------------------
     {
       tag: "div",
-      attrs: { class: "middle" },
+      attrs: { id: "middle" },
       //!
       // children: [
       //   {

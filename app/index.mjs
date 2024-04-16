@@ -7,6 +7,8 @@ import { create } from "./utils/create.mjs";
 import { virtualObj } from "./virtualObj.mjs";
 
 export const main = (props) => {
+  console.log("test => ", window.location.pathname);
+  history.pushState({}, "", `${window.location.pathname}/all`);
   const render = new Render(),
     routes = new Router({
       "/all": render.renderAll,
@@ -56,8 +58,7 @@ export const main = (props) => {
     completeAll();
     routes.loadCurrentView();
   });
-
+  
   routes.loadCurrentView();
 };
-
 main(virtualObj);

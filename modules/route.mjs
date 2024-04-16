@@ -9,10 +9,12 @@ export class Router {
   loadCurrentView() {
     const currentRoute = window.location.pathname.slice(window.location.pathname.lastIndexOf("/")) || "/";
     console.log("ddde => ", currentRoute);
+    console.log("routes: ", this.routes);
     const viewName = this.routes[currentRoute];
+    console.log("func test => ", viewName);
     if (viewName) {
-      this.routes[viewName]();
-      console.log(` view: ${viewName} loaded`);
+      this.routes[currentRoute]();
+      console.log(` view: ${currentRoute} loaded`);
     } else {
       console.error("endpoint not found:", currentRoute);
     }
