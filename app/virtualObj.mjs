@@ -1,4 +1,5 @@
-import { completeAll } from "./utils/completeAll.mjs";
+import { update } from "./utils/update.mjs";
+import { updateAll } from "./utils/updateAll.mjs";
 import { create } from "./utils/create.mjs";
 import { remove } from "./utils/remove.mjs";
 import { removeCompleted } from "./utils/removeCompleted.mjs";
@@ -67,6 +68,7 @@ export const virtualObj = {
           attrs: {
             class: "toggle-all-container",
           },
+          event: { script: updateAll, type: "click" },
           children: [
             {
               tag: "input",
@@ -113,6 +115,7 @@ export const virtualObj = {
                         type: "checkbox",
                         "data-testid": "todo-item-toggle",
                       },
+                      event: { script: update, type: "checked" },
                     },
                     {
                       tag: "label",

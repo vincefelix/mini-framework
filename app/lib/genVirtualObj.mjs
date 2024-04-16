@@ -1,9 +1,9 @@
-import { complete } from "../utils/complete.mjs";
 import { remove } from "../utils/remove.mjs";
+import { update } from "../utils/update.mjs";
 
 export const genTaskObj = (id = "", content = "", state = "") => {
   state = state == "completed" ? state : "";
-  return {
+  const obj = {
     tag: "li",
     attrs: {
       class: state,
@@ -19,10 +19,12 @@ export const genTaskObj = (id = "", content = "", state = "") => {
           {
             tag: "input",
             attrs: {
+              id: id,
               class: "toggle",
               type: "checkbox",
               "data-testid": "todo-item-toggle",
             },
+            event: { script: update, type: "change" },
           },
           {
             tag: "label",
@@ -48,4 +50,6 @@ export const genTaskObj = (id = "", content = "", state = "") => {
       },
     ],
   };
+  if (state === "completed") obj.children[0].children[0].attrs.checked = true;
+  return obj;
 };

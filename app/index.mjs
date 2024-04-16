@@ -2,8 +2,6 @@ import { newElement } from "../modules/dom.mjs";
 import { hdleEvent } from "../modules/event.mjs";
 import { Router } from "../modules/route.mjs";
 import { Render } from "./routes/render.mjs";
-import { completeAll } from "./utils/completeAll.mjs";
-import { create } from "./utils/create.mjs";
 import { virtualObj } from "./virtualObj.mjs";
 
 export const main = (props) => {
