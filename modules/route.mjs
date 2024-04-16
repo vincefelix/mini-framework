@@ -7,11 +7,8 @@ export class Router {
    * it renders  the component associated with the current route, or a default one if no match is found
    */
   loadCurrentView() {
-    const currentRoute = window.location.pathname.slice(window.location.pathname.lastIndexOf("/")) || "/";
-    console.log("ddde => ", currentRoute);
-    console.log("routes: ", this.routes);
+    const currentRoute = window.location.href.split("#")[1];
     const viewName = this.routes[currentRoute];
-    console.log("func test => ", viewName);
     if (viewName) {
       this.routes[currentRoute]();
       console.log(` view: ${currentRoute} loaded`);

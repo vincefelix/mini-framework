@@ -8,7 +8,8 @@ import { virtualObj } from "./virtualObj.mjs";
 
 export const main = (props) => {
   console.log("test => ", window.location.pathname);
-  history.pushState({}, "", `${window.location.pathname}/all`);
+  if (!window.location.href.includes("#"))
+    history.pushState({}, "", `${window.location.href}#/all`);
   const render = new Render(),
     routes = new Router({
       "/all": render.renderAll,
@@ -18,7 +19,7 @@ export const main = (props) => {
 
   newElement(props);
   hdleEvent("click", document.getElementsByClassName("display-all")[0], () => {
-    history.pushState({}, "", "http://127.0.0.1:5500/public/index.html/all");
+    history.pushState({}, "", `#/all`);
     routes.loadCurrentView();
   });
 
@@ -26,26 +27,13 @@ export const main = (props) => {
     "click",
     document.getElementsByClassName("display-active")[0],
     () => {
-      history.pushState(
-        {},
-        "",
-        "http://127.0.0.1:5500/public/index.html/active"
-      );
+      history.pushState({}, "", `#/active`);
       routes.loadCurrentView();
     }
   );
 
   hdleEvent("click", document.getElementsByClassName("display-done")[0], () => {
-    history.pushState(
-      {},
-      "",
-      "http://127.0.0.1:5500/public/index.html/completed"
-    );
-    routes.loadCurrentView();
-  });
-
-  hdleEvent("click", document.getElementById("add-todo"), () => {
-    create();
+    history.pushState({}, "", `#/completed`);
     routes.loadCurrentView();
   });
 
@@ -58,7 +46,11 @@ export const main = (props) => {
     completeAll();
     routes.loadCurrentView();
   });
-  
+
   routes.loadCurrentView();
 };
 main(virtualObj);
+
+window.addEventListener("beforeunload", () => {
+  alert("unloading...");
+});

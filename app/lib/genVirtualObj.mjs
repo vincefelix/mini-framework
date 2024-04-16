@@ -30,7 +30,7 @@ export const genTaskObj = (id = 0, content = "", state = "active") => {
               id: `check-${id}`,
               class: "btn validate hover-btn",
             },
-            event: { script: complete, type: "click" },
+           event: { script: complete, type: "click" },
             children: [
               {
                 tag: "img",

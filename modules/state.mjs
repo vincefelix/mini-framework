@@ -10,6 +10,8 @@ export class HdleState {
    * so it can be safely modified without mutating the state directly
    */
   get() {
+    console.log("getting with...", this.state);
+    //localStorage.setItem("data", JSON.stringify(this.state));
     return { ...this.state };
   }
 
@@ -22,6 +24,7 @@ export class HdleState {
   set(fn) {
     console.log("setting with...", fn);
     console.log("current state: ", this.state);
+   // localStorage.setItem("data", JSON.stringify(this.state));
     this.state = fn(this.state);
   }
 }

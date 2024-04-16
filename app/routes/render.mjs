@@ -19,7 +19,8 @@ export class Render {
 
   renderAll = () => {
     document.getElementById("middle").innerHTML = "";
-    database.get().value.forEach((item) => {
+    console.log("gotten db => ", database.state);
+    database.get()["value"].forEach((item) => {
       const obj = genTaskObj(item.id, item.content, item.state);
       newElement(obj, "middle");
     });
