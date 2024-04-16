@@ -1,64 +1,43 @@
 import { complete } from "../utils/complete.mjs";
 import { remove } from "../utils/remove.mjs";
 
-export const genTaskObj = (id = 0, content = "", state = "active") => {
-  state += "-task";
+export const genTaskObj = (content = "", state = "") => {
+  state = state == "completed" ? state : "";
   return {
-    tag: "div",
+    tag: "li",
     attrs: {
-      id: `task${id}`,
-      class: `task ${state} hover-task`,
+      class: state,
+      "data-testid": "todo-item",
     },
     children: [
       {
-        tag: "label",
-        attrs: {
-          contenteditable: "true",
-          class: "focus-label",
-        },
-        children: [content],
-      },
-      {
         tag: "div",
         attrs: {
-          class: "buttons btn-task",
+          class: "view",
         },
         children: [
           {
-            tag: "button",
+            tag: "input",
             attrs: {
-              id: `check-${id}`,
-              class: "btn validate hover-btn",
+              class: "toggle",
+              type: "checkbox",
+              "data-testid": "todo-item-toggle",
             },
-           event: { script: complete, type: "click" },
-            children: [
-              {
-                tag: "img",
-                attrs: {
-                  class: "icon2",
-                  src: "/public/assets/validate.svg",
-                  alt: "validate icon",
-                },
-              },
-            ],
+          },
+          {
+            tag: "label",
+            attrs: {
+              "data-testid": "todo-item-label",
+              contenteditable: true,
+            },
+            children: [content],
           },
           {
             tag: "button",
             attrs: {
-              id: `del-${id}`,
-              class: "btn delete hover-btn",
+              class: "destroy",
+              "data-testid": "todo-item-button",
             },
-            event: { script: remove, type: "click" },
-            children: [
-              {
-                tag: "img",
-                attrs: {
-                  class: "icon1",
-                  src: "/public/assets/cross.svg",
-                  alt: "cross icon",
-                },
-              },
-            ],
           },
         ],
       },

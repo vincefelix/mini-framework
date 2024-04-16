@@ -1,208 +1,251 @@
 import { completeAll } from "./utils/completeAll.mjs";
+import { create } from "./utils/create.mjs";
 import { remove } from "./utils/remove.mjs";
 export const virtualObj = {
-  tag: "div",
+  tag: "section",
   attrs: {
-    id: "container",
+    class: "todoapp",
+    id: "root",
   },
   children: [
-    { tag: "h1", attrs: { class: "title" }, children: ["TODOS"] },
-    //?-------------------- display input zone ---------------------
     {
-      tag: "div",
+      tag: "header",
       attrs: {
-        class: "input-zone",
+        class: "header",
+        "data-testid": "header",
       },
       children: [
         {
-          tag: "input",
-          attrs: {
-            id: "typing-zone",
-            type: "text",
-            placeholder: "what needs to be done?",
-          },
+          tag: "h1",
+          children: ["todos"],
         },
         {
           tag: "div",
           attrs: {
-            class: "buttons",
+            class: "input-container",
           },
-          //*--------- buttons -----------------
           children: [
             {
-              tag: "button",
-              attrs: { id: "validate-all", class: "cmd hover-btn" },
-              children: [
-                {
-                  tag: "img",
-                  attrs: {
-                    src: "/public/assets/check.svg",
-                    alt: "check icon",
-                    class: "icon1",
-                  },
+              tag: "input",
+              attrs: {
+                class: "new-todo",
+                id: "todo-input",
+                type: "text",
+                "data-testid": "text-input",
+                placeholder: "What needs to be done?",
+                value: "",
+              },
+              event: {
+                script: function (e) {
+                  if (e.key == "Enter") create();
                 },
-              ],
+                type: "keypress",
+              },
             },
             {
-              tag: "button",
-              attrs: { id: "add-todo", class: "cmd hover-btn" },
-              children: [
-                {
-                  tag: "img",
-                  attrs: {
-                    src: "/public/assets/add.svg",
-                    alt: "cross icon",
-                    class: "icon2",
-                  },
-                },
-              ],
+              tag: "label",
+              attrs: {
+                class: "visually-hidden",
+                for: "todo-input",
+              },
+              children: ["New Todo Input"],
             },
           ],
-          //*--------- end of buttons -----------------
         },
       ],
     },
-    //?-------------------- end of display input zone ---------------------
-    //********************************************************************/
-    //?-------------------- display tasks ---------------------
     {
-      tag: "div",
-      attrs: { id: "middle" },
-      //!
-      // children: [
-      //   {
-      //     tag: "div",
-      //     attrs: {
-      //       class: "task hover-task",
-      //     },
-      //     children: [
-      //       {
-      //         tag: "label",
-      //         attrs: {
-      //           for: "task1",
-      //           contenteditable: "true",
-      //           class: "focus-label",
-      //         },
-      //         children: ["this is first task"],
-      //       },
-      //       {
-      //         tag: "div",
-      //         attrs: {
-      //           class: "buttons btn-task",
-      //         },
-      //         children: [
-      //           {
-      //             tag: "button",
-      //             attrs: {
-      //               class: "btn validate hover-btn",
-      //             },
-      //             children: [
-      //               {
-      //                 tag: "img",
-      //                 attrs: {
-      //                   class: "icon2",
-      //                   src: "/public/assets/validate.svg",
-      //                   alt: "validate icon",
-      //                 },
-      //               },
-      //             ],
-      //           },
-      //           {
-      //             tag: "button",
-      //             attrs: {
-      //               class: "btn delete hover-btn",
-      //             },
-      //             children: [
-      //               {
-      //                 tag: "img",
-      //                 attrs: {
-      //                   class: "icon1",
-      //                   src: "/public/assets/cross.svg",
-      //                   alt: "cross icon",
-      //                 },
-      //               },
-      //             ],
-      //           },
-      //         ],
-      //       },
-      //     ],
-      //   },
-      // ],
-    },
-    //!
-    //?------------------- footer side ------------------------
-    {
-      tag: "div",
+      tag: "main",
       attrs: {
-        id: "footer",
+        class: "main",
+        "data-testid": "main",
       },
       children: [
         {
-          tag: "p",
-          attrs: { id: "remaining" },
-          children: [
-            {
-              tag: "span",
-              attrs: { id: "remaining-count" },
-              children: ["0"],
-            },
-            "items left",
-          ],
-        },
-        {
           tag: "div",
-          attrs: { id: "events" },
+          attrs: {
+            class: "toggle-all-container",
+          },
           children: [
             {
-              tag: "span",
-              attrs: { class: "display-all footer  hover-link" },
-              children: ["All"],
+              tag: "input",
+              attrs: {
+                class: "toggle-all",
+                type: "checkbox",
+                "data-testid": "toggle-all",
+              },
             },
             {
-              tag: "span",
-              attrs: { class: "display-active footer hover-link" },
-              children: ["Active"],
-            },
-            {
-              tag: "span",
-              attrs: { class: "display-done footer hover-link" },
-              children: ["Done"],
+              tag: "label",
+              attrs: {
+                class: "toggle-all-label",
+                for: "toggle-all",
+              },
+              children: ["Toggle All Input"],
             },
           ],
         },
-        {
-          tag: "span",
-          attrs: { class: "hover-link", id: "clear-footer" },
-          children: ["Clear Completed"],
-        },
-      ],
-    },
-    //?------------------- end of footer side ------------------------
-    //********************************************************************/
-    //?------------ credits ---------------
-    {
-      tag: "div",
-      attrs: { class: "credits" },
-      children: [
         {
           tag: "ul",
-          attrs: { id: "credit-list" },
+          attrs: {
+            class: "todo-list",
+            "data-testid": "todo-list",
+          },
           children: [
             {
               tag: "li",
-              attrs: { class: "instruction" },
-              children: ["Double click to edit"],
+              attrs: {
+                class: "",
+                "data-testid": "todo-item",
+              },
+              children: [
+                {
+                  tag: "div",
+                  attrs: {
+                    class: "view",
+                  },
+                  children: [
+                    {
+                      tag: "input",
+                      attrs: {
+                        class: "toggle",
+                        type: "checkbox",
+                        "data-testid": "todo-item-toggle",
+                      },
+                    },
+                    {
+                      tag: "label",
+                      attrs: {
+                        "data-testid": "todo-item-label",
+                        contenteditable: true,
+                      },
+                      children: ["sdsd"],
+                    },
+                    {
+                      tag: "button",
+                      attrs: {
+                        class: "destroy",
+                        "data-testid": "todo-item-button",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             {
               tag: "li",
-              attrs: { class: "author" },
-              children: ["Created by @mv"],
+              attrs: {
+                class: "",
+                "data-testid": "todo-item",
+              },
+              children: [
+                {
+                  tag: "div",
+                  attrs: {
+                    class: "view",
+                  },
+                  children: [
+                    {
+                      tag: "input",
+                      attrs: {
+                        class: "toggle",
+                        type: "checkbox",
+                        "data-testid": "todo-item-toggle",
+                      },
+                    },
+                    {
+                      tag: "label",
+                      attrs: {
+                        "data-testid": "todo-item-label",
+                      },
+                      children: ["sd"],
+                    },
+                    {
+                      tag: "button",
+                      attrs: {
+                        class: "destroy",
+                        "data-testid": "todo-item-button",
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
       ],
     },
-    //?------------ end of credits ---------------
-    //********************************************************************/
+    {
+      tag: "footer",
+      attrs: {
+        class: "footer",
+        "data-testid": "footer",
+      },
+      children: [
+        {
+          tag: "span",
+          attrs: {
+            class: "todo-count",
+          },
+          children: ["2 items left!"],
+        },
+        {
+          tag: "ul",
+          attrs: {
+            class: "filters",
+            "data-testid": "footer-navigation",
+          },
+          children: [
+            {
+              tag: "li",
+              children: [
+                {
+                  tag: "a",
+                  attrs: {
+                    class: "selected",
+                    href: "#/all",
+                  },
+                  children: ["All"],
+                },
+              ],
+            },
+            {
+              tag: "li",
+              children: [
+                {
+                  tag: "a",
+                  attrs: {
+                    class: "",
+                    href: "#/active",
+                  },
+                  children: ["Active"],
+                },
+              ],
+            },
+            {
+              tag: "li",
+              children: [
+                {
+                  tag: "a",
+                  attrs: {
+                    class: "",
+                    href: "#/completed",
+                  },
+                  children: ["Completed"],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          tag: "button",
+          attrs: {
+            class: "clear-completed",
+            disabled: "",
+          },
+          children: ["Clear completed"],
+        },
+      ],
+    },
   ],
 };

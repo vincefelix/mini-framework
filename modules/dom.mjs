@@ -9,7 +9,7 @@ import { hdleEvent } from "./event.mjs";
  * with the given tag name, attributes, and children within the virtualDom passed as argument.
  * if no node's id to append the newly created node is given, the node is attached to the body
  */
-export const newElement = (virtualDom = {}, appendTo = null) => {
+export const newElement = (virtualDom = {}, appendTo = null, type = "") => {
   const element = document.createElement(virtualDom.tag); // Create a new element using the given tag name
 
   // Add attrs to the element
@@ -21,6 +21,7 @@ export const newElement = (virtualDom = {}, appendTo = null) => {
 
   if (virtualDom.event) {
     hdleEvent(virtualDom.event.type, element, virtualDom.event.script);
+    console.log("event created with => ", virtualDom.event);
   }
 
   // Add children to the element
@@ -37,7 +38,14 @@ export const newElement = (virtualDom = {}, appendTo = null) => {
   }
 
   if (appendTo !== null) {
-    document.getElementById(appendTo).appendChild(element);
+    switch (type) {
+      case "id":
+        document.getElementById(appendTo).appendChild(element);
+        break;
+      case "class":
+        document.getElementsByClassName(appendTo)[0].appendChild(element);
+        break;
+    }
   } else {
     document.body.appendChild(element);
   }

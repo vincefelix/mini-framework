@@ -18,39 +18,25 @@ export const main = (props) => {
     });
 
   newElement(props);
-  hdleEvent("click", document.getElementsByClassName("display-all")[0], () => {
-    history.pushState({}, "", `#/all`);
-    routes.loadCurrentView();
-  });
 
-  hdleEvent(
-    "click",
-    document.getElementsByClassName("display-active")[0],
-    () => {
-      history.pushState({}, "", `#/active`);
+  document.querySelectorAll("a").forEach((x) => {
+    console.log("in => ", x);
+    hdleEvent("click", x, () => {
+      history.pushState({}, "", x.href);
       routes.loadCurrentView();
-    }
-  );
-
-  hdleEvent("click", document.getElementsByClassName("display-done")[0], () => {
-    history.pushState({}, "", `#/completed`);
-    routes.loadCurrentView();
+    });
   });
 
-  hdleEvent("click", document.getElementById("add-todo"), () => {
-    create();
-    routes.loadCurrentView();
-  });
+  // hdleEvent("click", document.getElementById("add-todo"), () => {
+  //   create();
+  //   routes.loadCurrentView();
+  // });
 
-  hdleEvent("click", document.getElementById("validate-all"), () => {
-    completeAll();
-    routes.loadCurrentView();
-  });
+  // hdleEvent("click", document.getElementById("validate-all"), () => {
+  //   completeAll();
+  //   routes.loadCurrentView();
+  // });
 
   routes.loadCurrentView();
 };
 main(virtualObj);
-
-window.addEventListener("beforeunload", () => {
-  alert("unloading...");
-});

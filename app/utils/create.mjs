@@ -3,7 +3,7 @@ import { addTask } from "../lib/addTask.mjs";
 
 export const create = () => {
   counter.value++;
-  const inputZone = document.getElementById("typing-zone");
+  const inputZone = document.getElementById("todo-input");
   if (inputZone.value.trim().length > 1) {
     const props = {
       id: counter.value,
