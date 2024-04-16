@@ -1,6 +1,7 @@
 import { completeAll } from "./utils/completeAll.mjs";
 import { create } from "./utils/create.mjs";
 import { remove } from "./utils/remove.mjs";
+import { removeCompleted } from "./utils/removeCompleted.mjs";
 export const virtualObj = {
   tag: "section",
   attrs: {
@@ -241,8 +242,8 @@ export const virtualObj = {
           tag: "button",
           attrs: {
             class: "clear-completed",
-            disabled: "",
           },
+          event: { script: removeCompleted, type: "click" },
           children: ["Clear completed"],
         },
       ],

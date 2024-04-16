@@ -18,7 +18,7 @@ export class Render {
     });
     database.get().value.forEach((item) => {
       if (item.state === "active") {
-        const obj = genTaskObj(item.content, item.state);
+        const obj = genTaskObj(item.id, item.content, item.state);
         newElement(obj, "todo-list", "class");
       }
     });
@@ -28,7 +28,7 @@ export class Render {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
     console.log("gotten db => ", database.state);
     database.get()["value"].forEach((item) => {
-      const obj = genTaskObj(item.content, item.state);
+      const obj = genTaskObj(item.id, item.content, item.state);
       newElement(obj, "todo-list", "class");
       document.querySelectorAll("a").forEach((x) => {
         if (x.href == "#/all" && !x.classList.contains("selected")) {
@@ -44,7 +44,7 @@ export class Render {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
     database.get().value.forEach((item) => {
       if (item.state === "completed") {
-        const obj = genTaskObj(item.content, item.state);
+        const obj = genTaskObj(item.id, item.content, item.state);
         newElement(obj, "todo-list", "class");
       }
     });

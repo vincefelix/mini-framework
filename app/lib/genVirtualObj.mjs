@@ -1,7 +1,7 @@
 import { complete } from "../utils/complete.mjs";
 import { remove } from "../utils/remove.mjs";
 
-export const genTaskObj = (content = "", state = "") => {
+export const genTaskObj = (id = "", content = "", state = "") => {
   state = state == "completed" ? state : "";
   return {
     tag: "li",
@@ -35,8 +35,13 @@ export const genTaskObj = (content = "", state = "") => {
           {
             tag: "button",
             attrs: {
+              id: id,
               class: "destroy",
               "data-testid": "todo-item-button",
+            },
+            event: {
+              script: remove,
+              type: "click",
             },
           },
         ],
