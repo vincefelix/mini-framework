@@ -2,6 +2,8 @@ import { newElement } from "../modules/dom.mjs";
 import { hdleEvent } from "../modules/event.mjs";
 import { Router } from "../modules/route.mjs";
 import { Render } from "./routes/render.mjs";
+import { create } from "./utils/create.mjs";
+import { updateAll } from "./utils/updateAll.mjs";
 import { virtualObj } from "./virtualObj.mjs";
 
 export const main = (props) => {
@@ -25,15 +27,22 @@ export const main = (props) => {
     });
   });
 
-  // hdleEvent("click", document.getElementById("add-todo"), () => {
-  //   create();
-  //   routes.loadCurrentView();
-  // });
+  hdleEvent("keypress", document.getElementById("todo-input"), (e) => {
+    if (e.key == "Enter") {
+      create();
+      console.log("✔ task created successfully");
+      routes.loadCurrentView();
+    }
 
-  // hdleEvent("click", document.getElementById("validate-all"), () => {
-  //   completeAll();
-  //   routes.loadCurrentView();
-  // });
+    hdleEvent(
+      "click",
+      document.getElementsByClassName("toggle-all-container")[0],
+      () => {
+        updateAll();
+        routes.loadCurrentView();
+      }
+    );
+  });
 
   routes.loadCurrentView();
 };

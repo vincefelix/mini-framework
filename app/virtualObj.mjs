@@ -37,12 +37,6 @@ export const virtualObj = {
                 placeholder: "What needs to be done?",
                 value: "",
               },
-              event: {
-                script: function (e) {
-                  if (e.key == "Enter") create();
-                },
-                type: "keypress",
-              },
             },
             {
               tag: "label",
