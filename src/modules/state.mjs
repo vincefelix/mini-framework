@@ -20,8 +20,6 @@ export class HdleState {
    }}
    */
   set(fn) {
-    console.log("setting with...", fn);
-    console.log("current state: ", this.state);
     this.state = fn(this.state);
   }
 }

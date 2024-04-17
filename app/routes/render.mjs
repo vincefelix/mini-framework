@@ -1,4 +1,4 @@
-import { newElement } from "../../modules/dom.mjs";
+import { newElement } from "../../src/modules/dom.mjs";
 import { database } from "../database/database.mjs";
 import { genTaskObj } from "../lib/genVirtualObj.mjs";
 
@@ -9,7 +9,7 @@ export class Render {
 
   renderActive = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
-    
+
     document.querySelectorAll("a").forEach((x) => {
       if (x.href == "#/active" && !x.classList.contains("selected")) {
         x.classList.add("selected");

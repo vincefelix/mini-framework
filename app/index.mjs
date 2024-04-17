@@ -1,6 +1,6 @@
-import { newElement } from "../modules/dom.mjs";
-import { hdleEvent } from "../modules/event.mjs";
-import { Router } from "../modules/route.mjs";
+import { newElement } from "../src/modules/dom.mjs";
+import { hdleEvent } from "../src/modules/event.mjs";
+import { Router } from "../src/modules/route.mjs";
 import { Render } from "./routes/render.mjs";
 import { create } from "./utils/create.mjs";
 import { itemCount } from "./utils/itemCount.mjs";
