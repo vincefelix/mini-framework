@@ -21,7 +21,6 @@ export const newElement = (virtualDom = {}, appendTo = null, type = "") => {
 
   if (virtualDom.event) {
     hdleEvent(virtualDom.event.type, element, virtualDom.event.script);
-    console.log("event created with => ", virtualDom.event);
   }
 
   // Add children to the element

@@ -3,11 +3,11 @@ import { hdleEvent } from "../modules/event.mjs";
 import { Router } from "../modules/route.mjs";
 import { Render } from "./routes/render.mjs";
 import { create } from "./utils/create.mjs";
+import { itemCount } from "./utils/itemCount.mjs";
 import { updateAll } from "./utils/updateAll.mjs";
 import { virtualObj } from "./virtualObj.mjs";
 
 export const main = (props) => {
-  console.log("test => ", window.location.pathname);
   if (!window.location.href.includes("#"))
     history.pushState({}, "", `${window.location.href}#/all`);
   const render = new Render(),
@@ -20,7 +20,6 @@ export const main = (props) => {
   newElement(props);
 
   document.querySelectorAll("a").forEach((x) => {
-    console.log("in => ", x);
     hdleEvent("click", x, () => {
       history.pushState({}, "", x.href);
       routes.loadCurrentView();
@@ -31,18 +30,19 @@ export const main = (props) => {
     if (e.key == "Enter") {
       create();
       console.log("✔ task created successfully");
+      itemCount();
       routes.loadCurrentView();
     }
-
-    hdleEvent(
-      "click",
-      document.getElementsByClassName("toggle-all-container")[0],
-      () => {
-        updateAll();
-        routes.loadCurrentView();
-      }
-    );
   });
+  hdleEvent(
+    "click",
+    document.getElementsByClassName("toggle-all-container")[0],
+    () => {
+      updateAll();
+      itemCount();
+      routes.loadCurrentView();
+    }
+  );
 
   routes.loadCurrentView();
 };

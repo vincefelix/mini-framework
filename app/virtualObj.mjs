@@ -1,7 +1,4 @@
 import { update } from "./utils/update.mjs";
-import { updateAll } from "./utils/updateAll.mjs";
-import { create } from "./utils/create.mjs";
-import { remove } from "./utils/remove.mjs";
 import { removeCompleted } from "./utils/removeCompleted.mjs";
 export const virtualObj = {
   tag: "section",
@@ -62,7 +59,6 @@ export const virtualObj = {
           attrs: {
             class: "toggle-all-container",
           },
-          event: { script: updateAll, type: "click" },
           children: [
             {
               tag: "input",

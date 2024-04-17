@@ -9,6 +9,7 @@ export class Render {
 
   renderActive = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
+    
     document.querySelectorAll("a").forEach((x) => {
       if (x.href == "#/active" && !x.classList.contains("selected")) {
         x.classList.add("selected");
@@ -26,10 +27,10 @@ export class Render {
 
   renderAll = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
-    console.log("gotten db => ", database.state);
     database.get()["value"].forEach((item) => {
       const obj = genTaskObj(item.id, item.content, item.state);
       newElement(obj, "todo-list", "class");
+
       document.querySelectorAll("a").forEach((x) => {
         if (x.href == "#/all" && !x.classList.contains("selected")) {
           x.classList.add("selected");
@@ -42,12 +43,14 @@ export class Render {
 
   renderDone = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
+
     database.get().value.forEach((item) => {
       if (item.state === "completed") {
         const obj = genTaskObj(item.id, item.content, item.state);
         newElement(obj, "todo-list", "class");
       }
     });
+
     document.querySelectorAll("a").forEach((x) => {
       if (x.href == "#/completed" && !x.classList.contains("selected")) {
         x.classList.add("selected");

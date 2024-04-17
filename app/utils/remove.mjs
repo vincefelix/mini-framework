@@ -1,4 +1,5 @@
 import { removeTask } from "../lib/removeTask.mjs";
+import { itemCount } from "./itemCount.mjs";
 
 export function remove(e) {
   console.log("here=> ", e.target.id);
@@ -6,4 +7,5 @@ export function remove(e) {
   document
     .getElementsByClassName("todo-list")[0]
     .removeChild(document.getElementById(e.target.id).parentNode.parentNode);
+  itemCount();
 }
