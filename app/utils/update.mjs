@@ -2,9 +2,7 @@ import { updateTask } from "../lib/updateTask.mjs";
 import { itemCount } from "./itemCount.mjs";
 
 export const update = (e) => {
-  console.log("checked type => ", e);
   const element = e.target;
-  console.log("id is here => ", element, " ", element.checked);
   updateTask(element.id);
 
   if (!element.checked) {

@@ -11,7 +11,6 @@ export const edit = (e) => {
     document.selection.empty();
   }
   e.target.focus();
-  console.log("in event => ", e);
   hdleEvent("keypress", e.target, (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -22,10 +21,7 @@ export const edit = (e) => {
   });
 
   hdleEvent("blur", e.target, (e) => {
-    console.log("before state => ", edited);
-    // console.log("in blur => ", e);
     if (e.target.textContent != initial && !edited) {
-      console.log("in false");
       e.target.textContent = initial;
     }
     edited = false;

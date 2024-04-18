@@ -30,12 +30,10 @@ export const updateTask = (id, all = false) => {
         switch (el.state) {
           case "active":
             el.state = "completed";
-            console.log("el ", el, " setted completed");
             break;
 
           case "completed":
             el.state = "active";
-            console.log("el ", el, " setted active");
             break;
         }
       }

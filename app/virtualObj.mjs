@@ -158,7 +158,6 @@ export const virtualObj = {
     },
     event: {
       script: () => {
-        console.log("fff");
         updateAll();
         itemCount();
         routes.loadCurrentView();

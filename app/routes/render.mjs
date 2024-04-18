@@ -22,17 +22,12 @@ export class Render {
         "toggle-all-container"
       )[0],
       footer = document.getElementsByClassName("footer")[0];
-    console.log("db length => ", database.get().value.length);
     if (database.get().value.length == 0) {
-      console.log("footer => ", footer);
-      console.log("in true");
       document.getElementsByClassName("main")[0].removeChild(toggleButton);
       document.getElementById("root").removeChild(footer);
       return;
     }
-    console.log("full base");
     if (!toggleButton && !footer) {
-      console.log("in ui");
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
@@ -57,7 +52,6 @@ export class Render {
         "toggle-all-container"
       )[0],
       footer = document.getElementsByClassName("footer")[0];
-    console.log("db length => ", database.get().value.length);
     if (database.get().value.length == 0) {
       if (toggleButton && footer) {
         document.getElementsByClassName("main")[0].removeChild(toggleButton);
@@ -65,9 +59,7 @@ export class Render {
       }
       return;
     }
-    console.log("full base");
     if (!toggleButton && !footer) {
-      console.log("in ui");
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
@@ -90,17 +82,12 @@ export class Render {
         "toggle-all-container"
       )[0],
       footer = document.getElementsByClassName("footer")[0];
-    console.log("db length => ", database.get().value.length);
     if (database.get().value.length == 0) {
-      console.log("footer => ", footer);
-      console.log("in true");
       document.getElementsByClassName("main")[0].removeChild(toggleButton);
       document.getElementById("root").removeChild(footer);
       return;
     }
-    console.log("full base");
     if (!toggleButton && !footer) {
-      console.log("in ui");
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }

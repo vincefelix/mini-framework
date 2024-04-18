@@ -10,5 +10,4 @@ export const removeTask = (id, place) => {
       );
       return dataList;
     });
-  console.log("after del => ", database.get());
 };
