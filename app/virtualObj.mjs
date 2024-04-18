@@ -1,6 +1,6 @@
 import { update } from "./utils/update.mjs";
 import { removeCompleted } from "./utils/removeCompleted.mjs";
-import { routes } from "./index.mjs";
+import { routes } from "./main.mjs";
 import { updateAll } from "./utils/updateAll.mjs";
 import { itemCount } from "./utils/itemCount.mjs";
 

@@ -1,4 +1,4 @@
-import { routes } from "../index.mjs";
+import { routes } from "../main.mjs";
 import { removeTask } from "../lib/removeTask.mjs";
 
 export function removeCompleted() {
