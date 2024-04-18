@@ -1,3 +1,4 @@
+import { hdleEvent } from "../../src/modules/event.mjs";
 import { remove } from "../utils/remove.mjs";
 import { update } from "../utils/update.mjs";
 
@@ -30,8 +31,39 @@ export const genTaskObj = (id = "", content = "", state = "") => {
             tag: "label",
             attrs: {
               "data-testid": "todo-item-label",
-              contenteditable: true,
             },
+            //---------- editor
+            event: {
+              script: function (e) {
+                e.target.contentEditable = true;
+                if (window.getSelection) {
+                  window.getSelection().removeAllRanges();
+                } else if (document.selection) {
+                  document.selection.empty();
+                }
+                e.target.focus();
+                console.log("in event => ", e);
+                hdleEvent("keypress", e.target, (e) => {
+                  if (e.key === "Enter") {
+                    e.target.contentEditable = false;
+                  }
+                });
+              },
+              type: "dblclick",
+            },
+
+            //--------- focus handling
+            // event: {
+            //   script: function (e) {
+            //     hdleEvent("keypress", e.target, (e)=> {
+            //       if (e.key === "Enter") {
+            //         e.target.contentEditable = false;
+            //       }
+            //     })
+            //     console.log("in event => ", e.target);
+            //   },
+            //   type: "focus",
+            // },
             children: [content],
           },
           {
