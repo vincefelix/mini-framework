@@ -4,9 +4,20 @@ export const updateTask = (id, all = false) => {
   if (all) {
     database.set((dataList) => {
       //--------------------
-      dataList.value.map((el) => {
-        if (el.id == id) el.state = "completed";
+      let count = 0;
+      //--------------------
+      dataList.value.forEach((el) => {
+        if (el.state == "completed") count++;
       });
+      if (count == dataList.value.length) {
+        dataList.value.map((el) => {
+          el.state = "active";
+        });
+      } else {
+        dataList.value.map((el) => {
+          el.state = "completed";
+        });
+      }
       return dataList;
     });
     return;
