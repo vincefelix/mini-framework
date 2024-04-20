@@ -271,6 +271,7 @@ export const virtualObj = {
         tag: "button",
         attrs: {
           class: "clear-completed",
+          disabled: true,
         },
         event: { script: removeCompleted, type: "click" },
         children: ["Clear completed"],

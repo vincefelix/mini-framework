@@ -31,12 +31,18 @@ export class Render {
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
-    database.get().value.forEach((item) => {
+    const value = database.get().value;
+    value.forEach((item) => {
       if (item.state === "active") {
         const obj = genTaskObj(item.id, item.content, item.state);
         newElement(obj, "todo-list", "class");
       }
     });
+    //-------handling clar completed button style
+    if (value.filter((x) => x.state == "completed").length > 1) {
+      const clearButton = document.getElementsByClassName("clear-completed")[0];
+      console.log(clearButton.disabled), (clearButton.disabled = true);
+    }
   };
 
   renderAll = () => {
@@ -63,10 +69,18 @@ export class Render {
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
-    database.get()["value"].forEach((item) => {
+
+    const value = database.get()["value"];
+    value.forEach((item) => {
       const obj = genTaskObj(item.id, item.content, item.state);
       newElement(obj, "todo-list", "class");
     });
+
+    //-------handling clar completed button style
+    if (value.filter((x) => x.state == "completed").length > 1) {
+      const clearButton = document.getElementsByClassName("clear-completed")[0];
+      console.log(clearButton.disabled), (clearButton.disabled = true);
+    }
   };
 
   renderDone = () => {
@@ -91,11 +105,18 @@ export class Render {
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
-    database.get().value.forEach((item) => {
+    const value = database.get().value;
+    value.forEach((item) => {
       if (item.state === "completed") {
         const obj = genTaskObj(item.id, item.content, item.state);
         newElement(obj, "todo-list", "class");
       }
     });
+
+    //-------handling clar completed button style
+    if (value.filter((x) => x.state == "completed").length > 1) {
+      const clearButton = document.getElementsByClassName("clear-completed")[0];
+      console.log(clearButton.disabled), (clearButton.disabled = true);
+    }
   };
 }
