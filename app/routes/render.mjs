@@ -38,10 +38,13 @@ export class Render {
         newElement(obj, "todo-list", "class");
       }
     });
-    //-------handling clar completed button style
-    if (value.filter((x) => x.state == "completed").length > 1) {
-      const clearButton = document.getElementsByClassName("clear-completed")[0];
-      console.log(clearButton.disabled), (clearButton.disabled = true);
+    //!-------handling clear completed button style
+    const clearButton = document.getElementsByClassName("clear-completed")[0];
+    if (value.filter((x) => x.state == "completed").length >= 1) {
+      console.log(clearButton.disabled);
+      clearButton.disabled = false;
+    } else {
+      clearButton.disabled = true;
     }
   };
 
@@ -76,10 +79,13 @@ export class Render {
       newElement(obj, "todo-list", "class");
     });
 
-    //-------handling clar completed button style
-    if (value.filter((x) => x.state == "completed").length > 1) {
-      const clearButton = document.getElementsByClassName("clear-completed")[0];
-      console.log(clearButton.disabled), (clearButton.disabled = true);
+    //!-------handling clear completed button style
+    const clearButton = document.getElementsByClassName("clear-completed")[0];
+    if (value.filter((x) => x.state == "completed").length >= 1) {
+      console.log(clearButton.disabled);
+      clearButton.disabled = false;
+    } else {
+      clearButton.disabled = true;
     }
   };
 
@@ -113,10 +119,13 @@ export class Render {
       }
     });
 
-    //-------handling clar completed button style
-    if (value.filter((x) => x.state == "completed").length > 1) {
-      const clearButton = document.getElementsByClassName("clear-completed")[0];
-      console.log(clearButton.disabled), (clearButton.disabled = true);
+    //!-------handling clear completed button style
+    const clearButton = document.getElementsByClassName("clear-completed")[0];
+    if (value.filter((x) => x.state == "completed").length >= 1) {
+      console.log(clearButton.disabled);
+      clearButton.disabled = false;
+    } else {
+      clearButton.disabled = true;
     }
   };
 }
