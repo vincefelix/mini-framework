@@ -1,4 +1,13 @@
+/**
+ * Represents a router for managing application routes.
+ */
+
 export class Router {
+  /**
+   * Creates a new Router instance.
+   * @param {object} [props={}] - The properties object containing route mappings.
+   */
+  
   constructor(props = {}) {
     this.routes = props;
   }
