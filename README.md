@@ -5,7 +5,6 @@ This project is a Todo List application built using the Mini-Framework, a lightw
 ## Features
 - Task Management: Users can add new tasks, edit existing tasks, mark tasks as completed, and remove tasks from the list.
 - Responsive UI: The application is designed to be responsive and user-friendly.
-- Local Storage: Tasks are stored locally in the browser, allowing users to retain their tasks even after closing the browser.
 
 ## Getting Started
 **Prerequisites**
