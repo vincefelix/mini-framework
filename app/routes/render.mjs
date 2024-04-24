@@ -12,7 +12,10 @@ export class Render {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
 
     document.querySelectorAll("a").forEach((x) => {
-      if (x.href == "#/active" && !x.classList.contains("selected")) {
+      if (
+        x.href.split("#")[1] == "/active" &&
+        !x.classList.contains("selected")
+      ) {
         x.classList.add("selected");
       } else {
         x.classList.remove("selected");
@@ -51,7 +54,7 @@ export class Render {
   renderAll = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
     document.querySelectorAll("a").forEach((x) => {
-      if (x.href == "#/all" && !x.classList.contains("selected")) {
+      if (x.href.split("#")[1] == "/all" && !x.classList.contains("selected")) {
         x.classList.add("selected");
       } else {
         x.classList.remove("selected");
@@ -92,7 +95,10 @@ export class Render {
   renderDone = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
     document.querySelectorAll("a").forEach((x) => {
-      if (x.href == "#/completed" && !x.classList.contains("selected")) {
+      if (
+        x.href.split("#")[1] == "/completed" &&
+        !x.classList.contains("selected")
+      ) {
         x.classList.add("selected");
       } else {
         x.classList.remove("selected");
