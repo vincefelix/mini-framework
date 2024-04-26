@@ -42,8 +42,6 @@ export class Render {
       }
     });
 
-
-
     //!-------handling clear completed button style
     const clearButton = document.getElementsByClassName("clear-completed")[0];
     if (value.filter((x) => x.state == "completed").length >= 1) {
@@ -80,8 +78,10 @@ export class Render {
       }
       return;
     }
-    if (!toggleButton && !footer) {
+    if (!toggleButton) {
       prependElement(toggleAllObj, "main", "class");
+    }
+    if (!footer) {
       newElement(footerObj, "root", "id");
     }
 
@@ -122,18 +122,19 @@ export class Render {
       document.getElementById("root").removeChild(footer);
       return;
     }
-    if (!toggleButton && !footer) {
-      prependElement(toggleAllObj, "main", "class");
+    const completedTask = database
+      .get()
+      .value.filter((x) => x.state == "completed");
+    console.log("inni => ", completedTask.length, " ", toggleButton);
+    if (!footer) {
       newElement(footerObj, "root", "id");
     }
-
-    const toggleButtons = document.getElementsByClassName(
-      "toggle-all-container"
-    )[0];
-    if (toggleButton) {
-      document.getElementsByClassName("main")[0].removeChild(toggleButtons);
+    if (!toggleButton && completedTask.length > 0) {
+      prependElement(toggleAllObj, "main", "class");
     }
-  
+    if (completedTask.length == 0 && toggleButton) {
+      document.getElementsByClassName("main")[0].removeChild(toggleButton);
+    }
 
     const value = database.get().value;
     value.forEach((item) => {
