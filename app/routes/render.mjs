@@ -41,6 +41,9 @@ export class Render {
         newElement(obj, "todo-list", "class");
       }
     });
+
+
+
     //!-------handling clear completed button style
     const clearButton = document.getElementsByClassName("clear-completed")[0];
     if (value.filter((x) => x.state == "completed").length >= 1) {
@@ -48,6 +51,12 @@ export class Render {
       clearButton.disabled = false;
     } else {
       clearButton.disabled = true;
+    }
+    const activeTasks = value.filter((item) => item.state === "active");
+    if (activeTasks.length === 0 && toggleButton) {
+      document.getElementsByClassName("main")[0].removeChild(toggleButton);
+    } else if (activeTasks.length > 0 && !toggleButton) {
+      prependElement(toggleAllObj, "main", "class");
     }
   };
 
@@ -117,6 +126,15 @@ export class Render {
       prependElement(toggleAllObj, "main", "class");
       newElement(footerObj, "root", "id");
     }
+
+    const toggleButtons = document.getElementsByClassName(
+      "toggle-all-container"
+    )[0];
+    if (toggleButton) {
+      document.getElementsByClassName("main")[0].removeChild(toggleButtons);
+    }
+  
+
     const value = database.get().value;
     value.forEach((item) => {
       if (item.state === "completed") {
