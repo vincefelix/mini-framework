@@ -1,8 +1,11 @@
-# [01JS Logo](../public/assets/miniframework.jpg) Mini-Framework Documentation
+
+# Mini-Framework Documentation
+
+ ![01JS Logo](../public/assets/miniframework.jpg)
 
 ## Introduction
 
-Welcome to the documentation for **01JS** our mini-framework! This guide will equip you with the knowledge to effectively utilize our framework and create interactive web applications. Our framework simplifies essential web development tasks, including:
+Welcome to the documentation for **01JS** our mini-framework! This guide will equip you with the knowledge to effectively use our framework and create interactive web applications. Our framework simplifies essential web development tasks, including:
 
 - **DOM Manipulation:** Create, manipulate, and dynamically append elements with ease.
 - **Routing System:** Seamlessly manage navigation between different application views.
@@ -109,3 +112,17 @@ hdleEvent('click', button, () => {
   console.log('Button clicked!');
 });
 ```
+
+### Authors
+
+- ***C***heickh NDIAYE ( [*cheikhndiaye9*](https://learn.zone01dakar.sn/git/cheikhndiaye9) )
+
+- ***M***asseck THIAW ( [*mthiaw*](https://learn.zone01dakar.sn/git/mthiaw) ) - **captain 👑**
+
+- ***V***incent Félix NDOUR ( [*vindour*](https://learn.zone01dakar.sn/git/vindour) )
+
+- ***S***erigne Khadim DIENE ( [*sdiene*](https://learn.zone01dakar.sn/git/sdiene) )
+
+
+
+#### *@Licensed by team CMVS*

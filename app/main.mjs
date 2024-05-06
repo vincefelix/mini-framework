@@ -4,7 +4,7 @@ import { Router } from "../src/modules/route.mjs";
 import { Render } from "./routes/render.mjs";
 import { create } from "./utils/create.mjs";
 import { itemCount } from "./utils/itemCount.mjs";
-import { virtualObj } from "./virtualObj.mjs";
+import { credits, virtualObj } from "./virtualObj.mjs";
 
 export const render = new Render(),
   routes = new Router({
@@ -18,6 +18,7 @@ export const main = () => {
     history.pushState({}, "", `${window.location.href}#/all`);
 
   newElement(virtualObj);
+  newElement(credits);
 
   hdleEvent("keypress", document.getElementById("todo-input"), (e) => {
     if (e.key == "Enter") {
@@ -27,7 +28,6 @@ export const main = () => {
       routes.loadCurrentView();
     }
   });
-
 
   routes.loadCurrentView();
 };

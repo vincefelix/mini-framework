@@ -277,4 +277,20 @@ export const virtualObj = {
         children: ["Clear completed"],
       },
     ],
+  },
+  credits = {
+    tag: "footer",
+    attrs: {
+      class: "info",
+    },
+    children: [
+      {
+        tag: "p",
+        children: ["Double-click to edit a todo"],
+      },
+      {
+        tag: "p",
+        children: ["Created by team CMVS"],
+      },
+    ],
   };
