@@ -16,6 +16,7 @@ export class Router {
    * it renders  the component associated with the current route, or a default one if no match is found
    */
   loadCurrentView() {
+    console.log("reloaded !!!!");
     const currentRoute = window.location.href.split("#")[1];
     const viewName = this.routes[currentRoute];
     if (viewName) {

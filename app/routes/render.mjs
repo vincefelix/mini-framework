@@ -26,8 +26,14 @@ export class Render {
       )[0],
       footer = document.getElementsByClassName("footer")[0];
     if (database.get().value.length == 0) {
-      document.getElementsByClassName("main")[0].removeChild(toggleButton);
-      document.getElementById("root").removeChild(footer);
+      if (toggleButton) {
+        document.getElementsByClassName("main")[0].removeChild(toggleButton);
+      }
+
+      if (footer) {
+        document.getElementById("root").removeChild(footer);
+      }
+
       return;
     }
     if (!toggleButton && !footer) {
@@ -71,11 +77,16 @@ export class Render {
         "toggle-all-container"
       )[0],
       footer = document.getElementsByClassName("footer")[0];
+
     if (database.get().value.length == 0) {
-      if (toggleButton && footer) {
+      if (toggleButton) {
         document.getElementsByClassName("main")[0].removeChild(toggleButton);
+      }
+
+      if (footer) {
         document.getElementById("root").removeChild(footer);
       }
+
       return;
     }
     if (!toggleButton) {
@@ -117,11 +128,19 @@ export class Render {
         "toggle-all-container"
       )[0],
       footer = document.getElementsByClassName("footer")[0];
+
     if (database.get().value.length == 0) {
-      document.getElementsByClassName("main")[0].removeChild(toggleButton);
-      document.getElementById("root").removeChild(footer);
+      if (toggleButton) {
+        document.getElementsByClassName("main")[0].removeChild(toggleButton);
+      }
+
+      if (footer) {
+        document.getElementById("root").removeChild(footer);
+      }
+
       return;
     }
+    
     const completedTask = database
       .get()
       .value.filter((x) => x.state == "completed");

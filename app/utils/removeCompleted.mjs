@@ -1,5 +1,4 @@
 import { routes } from "../main.mjs";
-import { removeTask } from "../lib/removeTask.mjs";
 import { database } from "../database/database.mjs";
 
 export function removeCompleted(e) {  
