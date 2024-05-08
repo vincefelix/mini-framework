@@ -212,11 +212,11 @@ export const virtualObj = {
                 tag: "a",
                 attrs: {
                   class: "selected",
-                  href: "#/all",
+                  href: "#/",
                 },
                 event: {
                   script: () => {
-                    history.pushState({}, "", "#/all");
+                    history.pushState({}, "", "#/");
                     routes.loadCurrentView();
                   },
                   type: "click",

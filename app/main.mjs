@@ -8,14 +8,19 @@ import { credits, virtualObj } from "./virtualObj.mjs";
 
 export const render = new Render(),
   routes = new Router({
-    "/all": render.renderAll,
+    "/": render.renderAll,
     "/active": render.renderActive,
     "/completed": render.renderDone,
   });
 
 export const main = () => {
   if (!window.location.href.includes("#"))
-    history.pushState({}, "", `${window.location.href}#/all`);
+    history.pushState({}, "", `${window.location.href}#/`);
+  if (
+    window.location.href.includes("#") &&
+    window.location.href.split("#")[1] != "/"
+  )
+    history.pushState({}, "", `${window.location.href.split("#")[0]}#/`);
 
   newElement(virtualObj);
   newElement(credits);

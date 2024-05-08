@@ -61,7 +61,7 @@ export class Render {
   renderAll = () => {
     document.getElementsByClassName("todo-list")[0].innerHTML = "";
     document.querySelectorAll("a").forEach((x) => {
-      if (x.href.split("#")[1] == "/all" && !x.classList.contains("selected")) {
+      if (x.href.split("#")[1] == "/" && !x.classList.contains("selected")) {
         x.classList.add("selected");
       } else {
         x.classList.remove("selected");
