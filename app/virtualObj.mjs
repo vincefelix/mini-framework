@@ -292,5 +292,18 @@ export const virtualObj = {
         tag: "p",
         children: ["Created by team CMVS"],
       },
+      {
+        tag: "p",
+        children: [
+          "Part of ",
+          {
+            tag: "a",
+            attrs: {
+              href: "http://todomvc.com",
+            },
+            children: ["TodoMVC"],
+          },
+        ],
+      },
     ],
   };
