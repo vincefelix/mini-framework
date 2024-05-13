@@ -25,7 +25,7 @@ A modern web browser that supports ES6 modules.
 - **Mini-Framework**: A custom lightweight framework for DOM manipulation, event handling, and state management.
 
 ## Framework Documentation
-For more information on the Mini-Framework and its functionalities, refer to the [01JS](/src/Documentation.md)
+For more information on the Mini-Framework and its functionalities, refer to the [01JS](https://learn.zone01dakar.sn/git/mthiaw/mini-framework/)
 
 ## License
 This project is licensed under the **01JS team**. See the LICENSE file for details.
