@@ -295,7 +295,9 @@ async function migrateProject(project, giteaUsername, githubUsername, githubToke
         let cloned = false;
         for (const owner of allPossibleOwners) {
             if (cloned) break;
-            const ownerGiteaUrl = `${GITEA_BASE_URL}/${owner}/${projectName}`;
+            // const ownerGiteaUrl = `${GITEA_BASE_URL}/${owner}/${projectName}`;
+            // Dans la fonction migrateProject
+const ownerGiteaUrl = `https://oauth2:${zone01Token}@learn.zone01dakar.sn/git/${owner}/${projectName}`;
             broadcast({
                 type: 'log',
                 message: `Trying to clone from: ${ownerGiteaUrl}`,
