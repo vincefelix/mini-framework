@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Gitea vers GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-icons/dist/umd/lucide.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Migration Gitea vers GitHub</h1>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                </button>
+            </div>
+            <div class="author-info">
+                <p>Développé par <a href="https://github.com/99mass" target="_blank">Samba Diop</a> - Alliance Breukh</p>
+                <p><a href="mailto:sambadiop161@gmail.com">sambadiop161@gmail.com</a></p>
+            </div>
+        </header>
+        
+        <!-- Formulaire de connexion Zone01 -->
+        <div class="card" id="zone01-login-form">
+            <div class="card-header">
+                <h2>Connexion à Zone01 Dakar</h2>
+                <p class="card-description">Connectez-vous avec vos identifiants Zone01 pour accéder à vos projets Gitea</p>
+            </div>
+            <form id="zone01-login">
+                <div class="form-group">
+                    <label for="zone01-email">Nom d'utilisateur ou Email Zone01 Dakar</label>
+                    <input type="text" id="zone01-email" required placeholder="Votre nom d'utilisateur ou email Zone01">
+                </div>
+                <div class="form-group">
+                    <label for="zone01-password">Mot de passe Zone01 Dakar</label>
+                    <input type="password" id="zone01-password" required placeholder="Votre mot de passe Zone01">
+                </div>
+                <button type="submit" id="zone01-submit" class="btn btn-primary">
+                    <span>Se connecter</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+            </form>
+            <div class="loading-spinner hidden" id="zone01-loading">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spinner"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+                <p>Connexion en cours...</p>
+            </div>
+            <div id="zone01-error" class="error-message hidden"></div>
+        </div>
+        
+        <!-- Dashboard (caché par défaut) -->
+        <div class="dashboard hidden" id="dashboard">
+            <!-- Configuration de la migration -->
+            <div class="card" id="login-form">
+                <div class="card-header">
+                    <h2>Configuration de la migration</h2>
+                    <p class="card-description">Configurez les paramètres pour la migration de vos projets Gitea vers GitHub</p>
+                </div>
+                <form id="auth-form">
+                    <div class="form-group hidden">
+                        <label for="zone01-token">Token Zone01 Dakar</label>
+                        <input type="hidden" id="zone01-token" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gitea-username">Nom d'utilisateur Gitea</label>
+                        <input type="text" id="gitea-username" required placeholder="Votre nom d'utilisateur sur Gitea">
+                    </div>
+                    <div class="form-group">
+                        <label for="github-username">Nom d'utilisateur GitHub</label>
+                        <input type="text" id="github-username" required placeholder="Votre nom d'utilisateur GitHub">
+                    </div>
+                    <div class="form-group">
+                        <label for="github-token">Token GitHub</label>
+                        <input type="password" id="github-token" required placeholder="Token personnel GitHub avec droits 'repo'">
+                        <small>Créez-en un dans GitHub > Settings > Developer settings > Personal access tokens</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="collaborators">Collaborateurs potentiels (séparés par des virgules)</label>
+                        <input type="text" id="collaborators" placeholder="atocdeck, bmalanda, ...">
+                        <small>Indiquez les noms d'utilisateurs de vos collaborateurs potentiels, qui pourraient être propriétaires des projets</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="fetch-projects" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>
+                            <span>Récupérer mes projets</span>
+                        </button>
+                        <button type="button" id="logout-button" class="btn btn-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                            <span>Se déconnecter</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Liste des projets -->
+            <div class="card" id="projects-list">
+                <div class="card-header">
+                    <h2>Projets à migrer</h2>
+                    <p class="card-description">Sélectionnez les projets que vous souhaitez migrer vers GitHub</p>
+                </div>
+                <div class="loading-spinner hidden" id="projects-loading">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spinner"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+                    <p>Récupération des projets...</p>
+                </div>
+                <div class="tabs projects-status-tabs">
+                    <button class="tab-button active" data-status="all">Tous</button>
+                    <button class="tab-button" data-status="pending">En attente</button>
+                    <button class="tab-button" data-status="success">Réussis</button>
+                    <button class="tab-button" data-status="error">Échoués</button>
+                </div>
+                <div id="project-container" class="project-container">
+                    <p class="empty-message">Aucun projet trouvé.</p>
+                </div>
+                <div class="buttons">
+                    <button id="select-all" class="btn btn-outline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                        <span>Tout sélectionner</span>
+                    </button>
+                    <button id="start-migration" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                        <span>Démarrer la migration</span>
+                    </button>
+                </div>
+                <div class="github-star-message">
+                    <p>Si cette application vous a été utile, n'oubliez pas de mettre une étoile ⭐ sur <a href="https://github.com/99mass/gitea-to-github" target="_blank">le projet GitHub</a> !</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de progression de migration (caché par défaut) -->
+        <div class="card hidden" id="migration-progress">
+            <div class="card-header">
+                <h2>Progression de la migration</h2>
+                <p class="card-description">Suivi en temps réel de la migration de vos projets vers GitHub</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <p id="progress-status" class="progress-status">0/0 projets migrés</p>
+            </div>
+            <div id="log-container">
+                <h3>Journal de migration</h3>
+                <div id="migration-log" class="migration-log"></div>
+            </div>
+            <button id="done-button" class="btn btn-primary hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Terminé</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
