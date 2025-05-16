@@ -19,13 +19,6 @@
 - **Responsive Design**: Works beautifully on both desktop and mobile devices
 - **Dark Mode**: Easy on the eyes for late-night coding sessions
 
-## 🖥️ Screenshots
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/99mass/gitea-to-github/public/assets/screenshot-login.png" alt="Login Screen" width="45%">
-  <img src="https://raw.githubusercontent.com/99mass/gitea-to-github/public/assets/screenshot-migration.png" alt="Migration Process" width="45%">
-</div>
-
 ## 🚀 Getting Started
 
 ### Prerequisites
