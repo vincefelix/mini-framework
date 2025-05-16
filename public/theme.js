@@ -1,25 +1,25 @@
-// Gestion du thème (clair/sombre)
+// Theme management (light/dark)
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
-    
-    // Vérifier si un thème est stocké dans localStorage
+
+    // Check if a theme is stored in localStorage
     const savedTheme = localStorage.getItem('theme');
-    
-    // Appliquer le thème sauvegardé ou utiliser le thème sombre par défaut
+
+    // Apply the saved theme or use dark theme by default
     if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
     } else {
         document.documentElement.classList.add('dark');
     }
-    
-    // Gérer le changement de thème
+
+    // Handle theme change
     themeToggle.addEventListener('click', () => {
         if (document.documentElement.classList.contains('dark')) {
-            // Passer au thème clair
+            // Switch to light theme
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
         } else {
-            // Passer au thème sombre
+            // Switch to dark theme
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
         }
